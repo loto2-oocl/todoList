@@ -1,3 +1,4 @@
+import { Button, Col, Input, Row } from 'antd';
 import React, { Component } from 'react';
 
 export default class TodoGenerator extends Component {
@@ -31,14 +32,22 @@ export default class TodoGenerator extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.message}
-            placeholder="input a new todo here..."
-            onChange={this.handleChange}
-          />
-          <button type="submit">add</button>
+        <form id="todoGenerator" onSubmit={this.handleSubmit}>
+          <Row gutter={10}>
+            <Col flex="auto">
+              <Input
+                type="text"
+                value={this.state.message}
+                placeholder="input a new todo here..."
+                onChange={this.handleChange}
+              />
+            </Col>
+            <Col flex="50px">
+              <Button form="todoGenerator" key="submit" htmlType="submit">
+                add
+              </Button>
+            </Col>
+          </Row>
         </form>
       </div>
     );
