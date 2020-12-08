@@ -1,17 +1,13 @@
 import './App.css';
-import TodoItem from './components/TodoItem';
+
 import TodoGeneratorContainer from './containers/TodoGeneratorContainer';
+import TodoGroupContainer from './containers/TodoGroupContainer';
 
 function App() {
-  const todoItem = {
-    status: 'done',
-    message: 'todo one',
-  };
-
   return (
     <div className="App">
       <header className="App-header">
-        <TodoItem todoItem={todoItem} />
+        <TodoGroupContainer />
         <TodoGeneratorContainer />
       </header>
     </div>
