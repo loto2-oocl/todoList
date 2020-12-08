@@ -1,5 +1,6 @@
 import './TodoItem.css';
 import React, { Component } from 'react';
+import { DONE } from '../constants/TodoItemStatus';
 
 class TodoItem extends Component {
   handleClick = () => {
@@ -17,7 +18,7 @@ class TodoItem extends Component {
     return (
       <div>
         <span
-          className={status === 'DONE' ? 'todo-item-done' : ''}
+          className={status === DONE ? 'todo-item-done' : ''}
           onClick={this.handleStatusChange}
         >
           {message}
