@@ -35,7 +35,7 @@ export default class TodoGenerator extends Component {
           <input
             type="text"
             value={this.state.message}
-            placeholder="input a new todo here"
+            placeholder="input a new todo here..."
             onChange={this.handleChange}
           />
           <button type="submit">add</button>
