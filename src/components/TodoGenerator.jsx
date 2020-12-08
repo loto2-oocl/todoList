@@ -16,12 +16,16 @@ export default class TodoGenerator extends Component {
   };
 
   handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (this.state.message === '') {
+      return;
+    }
+
     this.props.addTodoItem(this.state.message);
     this.setState({
       message: '',
     });
-
-    event.preventDefault();
   };
 
   render() {
