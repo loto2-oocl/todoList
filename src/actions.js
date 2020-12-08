@@ -1,4 +1,8 @@
-const { ADD_TODO_ITEM, REMOVE_TODO_ITEM } = require('./actionTypes');
+import {
+  ADD_TODO_ITEM,
+  REMOVE_TODO_ITEM,
+  TOGGLE_CHANGE_STATUS,
+} from './actionTypes';
 
 const addTodoItem = (message) => ({
   type: ADD_TODO_ITEM,
@@ -10,4 +14,9 @@ const removeTodoItem = (todoItemId) => ({
   payload: todoItemId,
 });
 
-export { addTodoItem, removeTodoItem };
+const toggleChangeStatus = (todoItemId) => ({
+  type: TOGGLE_CHANGE_STATUS,
+  payload: todoItemId,
+});
+
+export { addTodoItem, removeTodoItem, toggleChangeStatus };

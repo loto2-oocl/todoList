@@ -1,3 +1,4 @@
+import './TodoItem.css';
 import React, { Component } from 'react';
 
 class TodoItem extends Component {
@@ -6,11 +7,21 @@ class TodoItem extends Component {
     this.props.removeTodoItem(id);
   };
 
+  handleStatusChange = () => {
+    const { id } = this.props.todoItem;
+    this.props.toggleChangeStatus(id);
+  };
+
   render() {
     const { message, status } = this.props.todoItem;
     return (
       <div>
-        <span>{message}</span>
+        <span
+          className={status === 'DONE' ? 'todo-item-done' : ''}
+          onClick={this.handleStatusChange}
+        >
+          {message}
+        </span>
         <button onClick={this.handleClick}>x</button>
       </div>
     );
