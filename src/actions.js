@@ -1,8 +1,13 @@
-const { ADD_TODO_ITEM } = require('./actionTypes');
+const { ADD_TODO_ITEM, REMOVE_TODO_ITEM } = require('./actionTypes');
 
 const addTodoItem = (message) => ({
   type: ADD_TODO_ITEM,
   payload: message,
 });
 
-export { addTodoItem };
+const removeTodoItem = (todoItemId) => ({
+  type: REMOVE_TODO_ITEM,
+  payload: todoItemId,
+});
+
+export { addTodoItem, removeTodoItem };
