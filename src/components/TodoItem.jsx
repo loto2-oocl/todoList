@@ -4,7 +4,7 @@ import { DONE } from '../constants/TodoItemStatus';
 import { Button, Col, Row, Space, Tag } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
-import TagsGenerator from './TagsGenerator';
+import TagsGeneratorContainer from '../containers/TagsGeneratorContainer';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -43,7 +43,7 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
         </Col>
         <Space />
         <Col span={2}>
-          <TagsGenerator todoItem={todoItem} />
+          <TagsGeneratorContainer todoItem={todoItem} />
         </Col>
         <Col span={2}>
           <Button type="text" onClick={handleClick}>

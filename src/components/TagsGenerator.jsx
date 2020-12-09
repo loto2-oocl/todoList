@@ -4,7 +4,7 @@ import Modal from 'antd/lib/modal/Modal';
 import React, { useState } from 'react';
 import { updateTodoTags } from '../apis/todos';
 
-const TagsGenerator = ({ todoItem }) => {
+const TagsGenerator = ({ todoItem, updateTodoItem }) => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [tags, setTags] = useState([...todoItem.tags]);
@@ -25,7 +25,7 @@ const TagsGenerator = ({ todoItem }) => {
     setConfirmLoading(true);
     updateTodoTags(todoItem, tags)
       .then((response) => {
-        console.log(response);
+        updateTodoItem(response.data);
       })
       .finally(() => {
         setConfirmLoading(false);
