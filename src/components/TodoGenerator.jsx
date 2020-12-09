@@ -16,13 +16,7 @@ export default class TodoGenerator extends Component {
     });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (this.state.message === '') {
-      return;
-    }
-
+  handleSubmit = () => {
     this.props.addTodoItem(this.state.message);
     this.setState({
       message: '',
@@ -32,23 +26,19 @@ export default class TodoGenerator extends Component {
   render() {
     return (
       <div>
-        <form id="todoGenerator" onSubmit={this.handleSubmit}>
-          <Row gutter={10}>
-            <Col flex="auto">
-              <Input
-                type="text"
-                value={this.state.message}
-                placeholder="input a new todo here..."
-                onChange={this.handleChange}
-              />
-            </Col>
-            <Col flex="50px">
-              <Button form="todoGenerator" key="submit" htmlType="submit">
-                add
-              </Button>
-            </Col>
-          </Row>
-        </form>
+        <Row gutter={10}>
+          <Col flex="auto">
+            <Input
+              type="text"
+              value={this.state.message}
+              placeholder="input a new todo here..."
+              onChange={this.handleChange}
+            />
+          </Col>
+          <Col flex="50px">
+            <Button onClick={this.handleSubmit}>add</Button>
+          </Col>
+        </Row>
       </div>
     );
   }
