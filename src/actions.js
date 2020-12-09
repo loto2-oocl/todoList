@@ -5,9 +5,9 @@ import {
   TOGGLE_CHANGE_STATUS,
 } from './actionTypes';
 
-const addTodoItem = (message) => ({
+const addTodoItem = (todoItem) => ({
   type: ADD_TODO_ITEM,
-  payload: message,
+  payload: todoItem,
 });
 
 const removeTodoItem = (todoItemId) => ({

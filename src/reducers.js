@@ -5,18 +5,10 @@ import {
   REMOVE_TODO_ITEM,
   TOGGLE_CHANGE_STATUS,
 } from './actionTypes';
-import { NOT_DONE } from './constants/TodoItemStatus';
-import { v4 as uuidv4 } from 'uuid';
 
 const todoItemList = (state = [], action) => {
   if (action.type === ADD_TODO_ITEM) {
-    const item = {
-      id: uuidv4(),
-      message: action.payload,
-      status: NOT_DONE,
-    };
-
-    return state.concat(item);
+    return state.concat(action.payload);
   }
 
   if (action.type === REMOVE_TODO_ITEM) {

@@ -1,5 +1,6 @@
 import { Button, Col, Input, Row } from 'antd';
 import React, { Component } from 'react';
+import { createNewTodo } from '../apis/todos';
 
 export default class TodoGenerator extends Component {
   constructor(props) {
@@ -17,9 +18,15 @@ export default class TodoGenerator extends Component {
   };
 
   handleSubmit = () => {
-    this.props.addTodoItem(this.state.message);
-    this.setState({
-      message: '',
+    if (this.state.message === '') {
+      return;
+    }
+
+    createNewTodo(this.state.message).then((response) => {
+      this.props.addTodoItem(response.data);
+      this.setState({
+        message: '',
+      });
     });
   };
 

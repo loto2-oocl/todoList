@@ -4,4 +4,10 @@ const getTodoList = () => {
   return api.get('/todos');
 };
 
-export { getTodoList };
+const createNewTodo = (message) => {
+  return api.post('/todos', {
+    message,
+  });
+};
+
+export { getTodoList, createNewTodo };
