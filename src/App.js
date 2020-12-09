@@ -1,9 +1,10 @@
 import './App.css';
 import TodoList from './components/TodoList';
-import { Button, Col, Row } from 'antd';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import { Col, Row } from 'antd';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import DoneListContainer from './containers/DoneListContainer';
 import NotFoundPage from './components/NotFoundPage';
+import AppHeader from './components/AppHeader';
 
 function App() {
   return (
@@ -11,18 +12,7 @@ function App() {
       <Row>
         <Col span={24}>
           <BrowserRouter>
-            <Row>
-              <Col span="3">
-                <NavLink to="/">
-                  <Button block>Todo Page</Button>
-                </NavLink>
-              </Col>
-              <Col span="3">
-                <NavLink to="/done">
-                  <Button block>Done Page</Button>
-                </NavLink>
-              </Col>
-            </Row>
+            <AppHeader />
             <Switch>
               <Route exact path="/done" component={DoneListContainer} />
               <Route exact path="/" component={TodoList} />
