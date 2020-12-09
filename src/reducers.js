@@ -4,7 +4,7 @@ import {
   REMOVE_TODO_ITEM,
   TOGGLE_CHANGE_STATUS,
 } from './actionTypes';
-import { DONE, NOT_DONE } from './constants/TodoItemStatus';
+import { NOT_DONE } from './constants/TodoItemStatus';
 import { v4 as uuidv4 } from 'uuid';
 
 const todoItemList = (state = [], action) => {
@@ -27,7 +27,7 @@ const todoItemList = (state = [], action) => {
       if (todoItem.id === action.payload) {
         return {
           ...todoItem,
-          status: todoItem.status === NOT_DONE ? DONE : NOT_DONE,
+          status: !todoItem.status,
         };
       }
 
