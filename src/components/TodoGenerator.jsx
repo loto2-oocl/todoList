@@ -1,54 +1,44 @@
 import { Button, Col, Input, Row } from 'antd';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { createNewTodo } from '../apis/todos';
 
-export default class TodoGenerator extends Component {
-  constructor(props) {
-    super(props);
+const TodoGenerator = ({ addTodoItem }) => {
+  const [message, setMessage] = useState('');
 
-    this.state = {
-      message: '',
-    };
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      message: event.target.value,
-    });
+  const handleChange = (event) => {
+    setMessage(event.target.value);
   };
 
-  handleSubmit = () => {
-    if (this.state.message === '') {
+  const handleSubmit = () => {
+    if (message === '') {
       return;
     }
 
-    createNewTodo(this.state.message).then((response) => {
-      this.props.addTodoItem(response.data);
-      this.setState({
-        message: '',
-      });
+    createNewTodo(message).then((response) => {
+      addTodoItem(response.data);
+      setMessage('');
     });
   };
 
-  render() {
-    return (
-      <div>
-        <Row gutter={10}>
-          <Col flex="auto">
-            <Input
-              type="text"
-              value={this.state.message}
-              placeholder="input a new todo here..."
-              onChange={this.handleChange}
-            />
-          </Col>
-          <Col span={5}>
-            <Button block type="primary" onClick={this.handleSubmit}>
-              Add Todo
-            </Button>
-          </Col>
-        </Row>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Row gutter={10}>
+        <Col flex="auto">
+          <Input
+            type="text"
+            value={message}
+            placeholder="input a new todo here..."
+            onChange={handleChange}
+          />
+        </Col>
+        <Col span={5}>
+          <Button block type="primary" onClick={handleSubmit}>
+            Add Todo
+          </Button>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+export default TodoGenerator;
