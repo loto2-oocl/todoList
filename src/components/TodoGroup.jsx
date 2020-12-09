@@ -25,9 +25,6 @@ export default class TodoGroup extends Component {
             </List.Item>
           )}
         />
-        {/* {todoItemList.map((todoItem) => (
-          <TodoItemContainer key={todoItem.id} todoItem={todoItem} />
-        ))} */}
       </div>
     );
   }
