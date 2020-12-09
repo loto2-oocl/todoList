@@ -21,4 +21,16 @@ const toggleTodoStatus = (todoItem) => {
   });
 };
 
-export { getTodoList, createNewTodo, deleteTodoItem, toggleTodoStatus };
+const updateTodoTags = (todoItem, updatedTags) => {
+  return api.put(`/todos/${todoItem.id}`, {
+    ...todoItem,
+    tags: updatedTags,
+  });
+};
+export {
+  getTodoList,
+  createNewTodo,
+  deleteTodoItem,
+  toggleTodoStatus,
+  updateTodoTags,
+};
