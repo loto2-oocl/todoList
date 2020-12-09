@@ -43,7 +43,9 @@ export default class TodoGenerator extends Component {
             />
           </Col>
           <Col flex="50px">
-            <Button onClick={this.handleSubmit}>add</Button>
+            <Button type="primary" onClick={this.handleSubmit}>
+              add
+            </Button>
           </Col>
         </Row>
       </div>
