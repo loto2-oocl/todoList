@@ -9,9 +9,7 @@ export default class TodoGroup extends Component {
     return (
       <div className="todogroup-wrapper">
         {todoItemList.map((todoItem) => (
-          <>
-            <TodoItemContainer key={todoItem.id} todoItem={todoItem} />
-          </>
+          <TodoItemContainer key={todoItem.id} todoItem={todoItem} />
         ))}
       </div>
     );
