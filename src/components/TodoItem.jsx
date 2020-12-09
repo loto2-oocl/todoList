@@ -35,7 +35,7 @@ class TodoItem extends Component {
         <Space />
         <Col flex="50px">
           <Button type="text" onClick={this.handleClick}>
-            <CloseOutlined />
+            <CloseOutlined className="todo-item-close-button" />
           </Button>
         </Col>
       </Row>
