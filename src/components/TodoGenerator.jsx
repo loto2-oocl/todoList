@@ -4,6 +4,7 @@ import { createNewTodo } from '../apis/todos';
 
 const TodoGenerator = ({ addTodoItem }) => {
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
     setMessage(event.target.value);
@@ -14,10 +15,15 @@ const TodoGenerator = ({ addTodoItem }) => {
       return;
     }
 
-    createNewTodo(message).then((response) => {
-      addTodoItem(response.data);
-      setMessage('');
-    });
+    setLoading(true);
+    createNewTodo(message)
+      .then((response) => {
+        addTodoItem(response.data);
+        setMessage('');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -32,7 +38,7 @@ const TodoGenerator = ({ addTodoItem }) => {
           />
         </Col>
         <Col span={5}>
-          <Button block type="primary" onClick={handleSubmit}>
+          <Button loading={loading} block type="primary" onClick={handleSubmit}>
             Add Todo
           </Button>
         </Col>
