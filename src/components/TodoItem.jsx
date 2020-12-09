@@ -6,6 +6,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
 import TagsGeneratorContainer from '../containers/TagsGeneratorContainer';
 import classNames from 'classnames';
+import { render } from '@testing-library/react';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -24,6 +25,10 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
     });
   };
 
+  const renderTags = (tags) => {
+    return tags.map((tag) => <Tag>{tag}</Tag>);
+  };
+
   const messageClassName = classNames({
     'todo-item-text': true,
     'todo-item-done': status === DONE,
@@ -39,11 +44,7 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
                 {message}
               </span>
             </Col>
-            <Col>
-              {todoItem.tags.map((tag) => (
-                <Tag>{tag}</Tag>
-              ))}
-            </Col>
+            <Col>{renderTags(todoItem.tags)}</Col>
           </Row>
         </Col>
         <Space />
