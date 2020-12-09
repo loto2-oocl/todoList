@@ -5,6 +5,7 @@ import { Button, Col, Row, Space, Tag } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
 import TagsGeneratorContainer from '../containers/TagsGeneratorContainer';
+import classNames from 'classnames';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -23,16 +24,18 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
     });
   };
 
+  const messageClassName = classNames({
+    'todo-item-text': true,
+    'todo-item-done': status === DONE,
+  });
+
   return (
     <>
       <Row className="todo-item-row" align="middle">
         <Col span={20}>
           <Row gutter={[0, 10]}>
             <Col span={24}>
-              <span
-                className={status === DONE ? 'todo-item-done' : ''}
-                onClick={handleStatusChange}
-              >
+              <span className={messageClassName} onClick={handleStatusChange}>
                 {message}
               </span>
             </Col>
