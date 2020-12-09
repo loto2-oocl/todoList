@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Row>
-        <Col span={10} offset={7}>
+        <Col flex="auto">
           <TodoList />
         </Col>
       </Row>
