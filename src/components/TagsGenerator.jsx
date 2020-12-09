@@ -1,3 +1,4 @@
+import './TagsGenerator.css';
 import { EditOutlined } from '@ant-design/icons';
 import { Button, Select } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
@@ -49,7 +50,7 @@ const TagsGenerator = ({ todoItem, updateTodoItem }) => {
       >
         <Select
           mode="tags"
-          style={{ width: '100%' }}
+          className="todo-item-tags-input"
           onChange={handleChange}
           defaultValue={tags}
         ></Select>

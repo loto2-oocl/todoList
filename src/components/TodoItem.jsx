@@ -25,20 +25,22 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
 
   return (
     <>
-      <Row className="todo-item-row">
+      <Row className="todo-item-row" align="middle">
         <Col span={20}>
-          <Row>
-            <span
-              className={status === DONE ? 'todo-item-done' : ''}
-              onClick={handleStatusChange}
-            >
-              {message}
-            </span>
-          </Row>
-          <Row>
-            {todoItem.tags.map((tag) => (
-              <Tag>{tag}</Tag>
-            ))}
+          <Row gutter={[0, 10]}>
+            <Col span={24}>
+              <span
+                className={status === DONE ? 'todo-item-done' : ''}
+                onClick={handleStatusChange}
+              >
+                {message}
+              </span>
+            </Col>
+            <Col>
+              {todoItem.tags.map((tag) => (
+                <Tag>{tag}</Tag>
+              ))}
+            </Col>
           </Row>
         </Col>
         <Space />
