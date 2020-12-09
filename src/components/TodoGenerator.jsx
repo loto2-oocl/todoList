@@ -42,9 +42,9 @@ export default class TodoGenerator extends Component {
               onChange={this.handleChange}
             />
           </Col>
-          <Col flex="50px">
-            <Button type="primary" onClick={this.handleSubmit}>
-              add
+          <Col span={5}>
+            <Button block type="primary" onClick={this.handleSubmit}>
+              Add Todo
             </Button>
           </Col>
         </Row>
