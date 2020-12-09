@@ -1,16 +1,13 @@
-import { Button, Col, Input, Row } from 'antd';
+import { Button, Col, Input, Row, Form } from 'antd';
 import React, { useState } from 'react';
 import { createNewTodo } from '../apis/todos';
 
 const TodoGenerator = ({ addTodoItem }) => {
-  const [message, setMessage] = useState('');
+  const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (event) => {
-    setMessage(event.target.value);
-  };
-
-  const handleSubmit = () => {
+  const handleSubmit = (formValues) => {
+    const { message } = formValues;
     if (message === '') {
       return;
     }
@@ -19,7 +16,7 @@ const TodoGenerator = ({ addTodoItem }) => {
     createNewTodo(message)
       .then((response) => {
         addTodoItem(response.data);
-        setMessage('');
+        form.resetFields();
       })
       .finally(() => {
         setLoading(false);
@@ -27,23 +24,30 @@ const TodoGenerator = ({ addTodoItem }) => {
   };
 
   return (
-    <div>
+    <Form form={form} onFinish={handleSubmit}>
       <Row gutter={10}>
         <Col flex="auto">
-          <Input
-            type="text"
-            value={message}
-            placeholder="input a new todo here..."
-            onChange={handleChange}
-          />
+          <Form.Item
+            name="message"
+            rules={[
+              {
+                required: true,
+                message: 'Todo message cannot be empty',
+              },
+            ]}
+          >
+            <Input type="text" placeholder="input a new todo here..." />
+          </Form.Item>
         </Col>
         <Col span={5}>
-          <Button loading={loading} block type="primary" onClick={handleSubmit}>
-            Add Todo
-          </Button>
+          <Form.Item>
+            <Button loading={loading} block type="primary" htmlType="submit">
+              Add Todo
+            </Button>
+          </Form.Item>
         </Col>
       </Row>
-    </div>
+    </Form>
   );
 };
 
