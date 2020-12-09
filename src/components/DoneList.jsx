@@ -1,13 +1,14 @@
 import './DoneList.css';
-import { Card, Col, List, Row, Tag } from 'antd';
+import { Card, Col, List, Row } from 'antd';
 import React, { Component } from 'react';
+import ColoredTag from './ColoredTag';
 
 export default class DoneList extends Component {
   render() {
     const { doneList } = this.props;
 
     const renderTags = (tags) => {
-      return tags.map((tag) => <Tag>{tag}</Tag>);
+      return tags.map((tag) => <ColoredTag key={tag} tag={tag} />);
     };
 
     return (

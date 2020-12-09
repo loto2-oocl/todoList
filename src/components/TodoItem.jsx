@@ -1,12 +1,12 @@
 import './TodoItem.css';
 import React from 'react';
 import { DONE } from '../constants/TodoItemStatus';
-import { Button, Col, Row, Space, Tag } from 'antd';
+import { Button, Col, Row, Space } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
 import TagsGeneratorContainer from '../containers/TagsGeneratorContainer';
 import classNames from 'classnames';
-import { render } from '@testing-library/react';
+import ColoredTag from './ColoredTag';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -26,7 +26,7 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   };
 
   const renderTags = (tags) => {
-    return tags.map((tag) => <Tag>{tag}</Tag>);
+    return tags.map((tag) => <ColoredTag key={tag} tag={tag} />);
   };
 
   const messageClassName = classNames({
