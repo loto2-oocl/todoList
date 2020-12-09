@@ -14,4 +14,11 @@ const deleteTodoItem = (id) => {
   return api.delete(`/todos/${id}`);
 };
 
-export { getTodoList, createNewTodo, deleteTodoItem };
+const toggleTodoStatus = (todoItem) => {
+  return api.put(`/todos/${todoItem.id}`, {
+    ...todoItem,
+    status: !todoItem.status,
+  });
+};
+
+export { getTodoList, createNewTodo, deleteTodoItem, toggleTodoStatus };

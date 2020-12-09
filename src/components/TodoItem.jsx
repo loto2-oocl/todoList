@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { DONE } from '../constants/TodoItemStatus';
 import { Button, Col, Row, Space } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import { deleteTodoItem } from '../apis/todos';
+import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
 
 class TodoItem extends Component {
   handleClick = () => {
@@ -15,7 +15,9 @@ class TodoItem extends Component {
 
   handleStatusChange = () => {
     const { id } = this.props.todoItem;
-    this.props.toggleChangeStatus(id);
+    toggleTodoStatus(this.props.todoItem).then(() => {
+      this.props.toggleChangeStatus(id);
+    });
   };
 
   render() {
