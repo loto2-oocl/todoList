@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 import { DONE } from '../constants/TodoItemStatus';
 import { Button, Col, Row, Space } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import { deleteTodoItem } from '../apis/todos';
 
 class TodoItem extends Component {
   handleClick = () => {
     const { id } = this.props.todoItem;
-    this.props.removeTodoItem(id);
+    deleteTodoItem(id).then(() => {
+      this.props.removeTodoItem(id);
+    });
   };
 
   handleStatusChange = () => {

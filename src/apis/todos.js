@@ -10,4 +10,8 @@ const createNewTodo = (message) => {
   });
 };
 
-export { getTodoList, createNewTodo };
+const deleteTodoItem = (id) => {
+  return api.delete(`/todos/${id}`);
+};
+
+export { getTodoList, createNewTodo, deleteTodoItem };
