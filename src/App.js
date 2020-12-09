@@ -3,6 +3,7 @@ import TodoList from './components/TodoList';
 import { Button, Col, Row } from 'antd';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import DoneListContainer from './containers/DoneListContainer';
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Switch>
               <Route path="/done" component={DoneListContainer} />
               <Route exact path="/" component={TodoList} />
+              <Route component={NotFoundPage} />
             </Switch>
           </BrowserRouter>
         </Col>
