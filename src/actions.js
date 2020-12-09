@@ -1,5 +1,6 @@
 import {
   ADD_TODO_ITEM,
+  INIT_TODOS,
   REMOVE_TODO_ITEM,
   TOGGLE_CHANGE_STATUS,
 } from './actionTypes';
@@ -19,4 +20,9 @@ const toggleChangeStatus = (todoItemId) => ({
   payload: todoItemId,
 });
 
-export { addTodoItem, removeTodoItem, toggleChangeStatus };
+const initTodos = (todos) => ({
+  type: INIT_TODOS,
+  payload: todos,
+});
+
+export { addTodoItem, removeTodoItem, toggleChangeStatus, initTodos };

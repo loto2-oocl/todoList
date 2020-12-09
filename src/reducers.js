@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   ADD_TODO_ITEM,
+  INIT_TODOS,
   REMOVE_TODO_ITEM,
   TOGGLE_CHANGE_STATUS,
 } from './actionTypes';
@@ -33,6 +34,10 @@ const todoItemList = (state = [], action) => {
 
       return todoItem;
     });
+  }
+
+  if (action.type === INIT_TODOS) {
+    return action.payload;
   }
 
   return state;
