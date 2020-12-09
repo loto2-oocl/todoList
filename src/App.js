@@ -24,7 +24,7 @@ function App() {
               </Col>
             </Row>
             <Switch>
-              <Route path="/done" component={DoneListContainer} />
+              <Route exact path="/done" component={DoneListContainer} />
               <Route exact path="/" component={TodoList} />
               <Route component={NotFoundPage} />
             </Switch>
