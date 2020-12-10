@@ -1,31 +1,39 @@
 import './TodoGroup.css';
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import TodoItemContainer from '../containers/TodoItemContainer';
 import { getTodoList } from '../apis/todos';
 import { List } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { initTags, initTodos } from '../actions';
+import { getAllTags } from '../apis/tags';
 
-export default class TodoGroup extends Component {
-  componentDidMount() {
+const TodoGroup = () => {
+  const todoItemList = useSelector((state) => state.todoItemList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     getTodoList().then((response) => {
-      this.props.initTodos(response.data);
+      dispatch(initTodos(response.data));
     });
-  }
 
-  render() {
-    const { todoItemList } = this.props;
+    getAllTags().then((response) => {
+      dispatch(initTags(response.data));
+    });
+  }, [dispatch]);
 
-    return (
-      <div className="todogroup-wrapper">
-        <List
-          size="small"
-          dataSource={todoItemList}
-          renderItem={(todoItem) => (
-            <List.Item key={todoItem.id}>
-              <TodoItemContainer todoItem={todoItem} />
-            </List.Item>
-          )}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="todogroup-wrapper">
+      <List
+        size="small"
+        dataSource={todoItemList}
+        renderItem={(todoItem) => (
+          <List.Item key={todoItem.id}>
+            <TodoItemContainer todoItem={todoItem} />
+          </List.Item>
+        )}
+      />
+    </div>
+  );
+};
+
+export default TodoGroup;

@@ -2,11 +2,10 @@ import './TagsGenerator.css';
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Select } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { updateTodoTags } from '../apis/todos';
 import { useDispatch, useSelector } from 'react-redux';
-import { initTags, updateTodoItem } from '../actions';
-import { getAllTags } from '../apis/tags';
+import { updateTodoItem } from '../actions';
 import _ from 'lodash';
 
 const { Option } = Select;
@@ -18,12 +17,6 @@ const TagsGenerator = ({ todoItem }) => {
   const [tagIds, setTagIds] = useState(initialTagIds);
   const tagsList = useSelector((state) => state.tags);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    getAllTags().then((response) => {
-      dispatch(initTags(response.data));
-    });
-  }, []);
 
   const showModal = () => {
     setVisible(true);

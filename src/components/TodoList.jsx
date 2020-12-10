@@ -1,7 +1,7 @@
 import './TodoList.css';
 import React, { Component } from 'react';
 
-import TodoGroupContainer from '../containers/TodoGroupContainer';
+import TodoGroup from './TodoGroup';
 import TodoGeneratorContainer from '../containers/TodoGeneratorContainer';
 import { Card } from 'antd';
 
@@ -10,7 +10,7 @@ class TodoList extends Component {
     return (
       <div className="todolist-card-wrapper">
         <Card title="Todo List" bordered={false}>
-          <TodoGroupContainer />
+          <TodoGroup />
           <TodoGeneratorContainer />
         </Card>
       </div>
