@@ -43,19 +43,16 @@ const todoItemList = (state = [], action) => {
 };
 
 const tags = (state = [], action) => {
-  if (action.type === INIT_TAGS) {
-    return action.payload;
+  switch (action.type) {
+    case INIT_TAGS:
+      return action.payload;
+    case ADD_TAG:
+      return state.concat(action.payload);
+    case REMOVE_TAG:
+      return state.filter((tag) => tag.id !== action.payload);
+    default:
+      return state;
   }
-
-  if (action.type === ADD_TAG) {
-    return state.concat(action.payload);
-  }
-
-  if (action.type === REMOVE_TAG) {
-    return state.filter((tag) => tag.id !== action.payload);
-  }
-
-  return state;
 };
 
 export default combineReducers({
