@@ -17,6 +17,9 @@ function AppHeader() {
       <Menu.Item key="/done">
         <Link to="/done">Done Page</Link>
       </Menu.Item>
+      <Menu.Item key="/tags">
+        <Link to="/tags">Manage Tags</Link>
+      </Menu.Item>
     </Menu>
   );
 }

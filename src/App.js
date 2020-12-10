@@ -4,6 +4,7 @@ import { Col, Row } from 'antd';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import DoneListContainer from './containers/DoneListContainer';
 import NotFoundPage from './components/NotFoundPage';
+import TagList from './components/tags/TagList';
 import AppHeader from './components/AppHeader';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <AppHeader />
             <Switch>
               <Route exact path="/done" component={DoneListContainer} />
+              <Route exact path="/tags" component={TagList} />
               <Route exact path="/" component={TodoList} />
               <Route component={NotFoundPage} />
             </Switch>
