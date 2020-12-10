@@ -13,7 +13,7 @@ const TagsManageTab = () => {
           <Col span={5}>
             <TagsCreator />
           </Col>
-          <Col>
+          <Col span={24}>
             <TagList />
           </Col>
         </Row>

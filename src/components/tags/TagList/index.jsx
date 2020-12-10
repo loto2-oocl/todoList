@@ -61,7 +61,14 @@ const TagList = () => {
     },
   ];
 
-  return <Table columns={columns} loading={loading} dataSource={tagsList} />;
+  return (
+    <Table
+      columns={columns}
+      loading={loading}
+      dataSource={tagsList}
+      pagination={{ pageSize: 5 }}
+    />
+  );
 };
 
 export default TagList;
