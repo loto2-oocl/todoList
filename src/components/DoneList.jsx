@@ -14,8 +14,10 @@ export default class DoneList extends Component {
     return (
       <div className="donelist-card-wrapper">
         <Card title="Done List" bordered={false}>
-          <List>
-            {doneList.map((doneItem) => (
+          <List
+            size="small"
+            dataSource={doneList}
+            renderItem={(doneItem) => (
               <List.Item key={doneItem.id}>
                 <Row gutter={[0, 10]}>
                   <Col span={24}>
@@ -24,8 +26,8 @@ export default class DoneList extends Component {
                   <Col>{renderTags(doneItem.tags)}</Col>
                 </Row>
               </List.Item>
-            ))}
-          </List>
+            )}
+          />
         </Card>
       </div>
     );
