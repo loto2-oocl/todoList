@@ -1,11 +1,10 @@
 import './TodoItem.css';
 import React from 'react';
-import { DONE } from '../constants/TodoItemStatus';
-import { Button, Col, Popover, Row, Space, Tag } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+import { Button, Col, Row, Tag, Tooltip } from 'antd';
+import { CheckCircleOutlined, DeleteOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
-import classNames from 'classnames';
 import TagsGenerator from './TagsGenerator';
+import classNames from 'classnames';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -32,9 +31,9 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
     ));
   };
 
-  const messageClassName = classNames({
-    'todo-item-text': true,
-    'todo-item-done': status === DONE,
+  const doneIconClassnames = classNames({
+    'todo-item-icon': true,
+    'todo-item-icon-done': status,
   });
 
   return (
@@ -46,26 +45,32 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
         wrap={false}
         gutter={5}
       >
+        <Col flex="50px">
+          <Tooltip title="Mark Done">
+            <Button type="text" onClick={handleStatusChange}>
+              <CheckCircleOutlined className={doneIconClassnames} />
+            </Button>
+          </Tooltip>
+        </Col>
         <Col flex="auto">
           <Row gutter={[0, 10]}>
             <Col span={24}>
-              <span className={messageClassName} onClick={handleStatusChange}>
-                {message}
-              </span>
+              <div onClick={handleStatusChange}>
+                <span>{message}</span>
+              </div>
             </Col>
             <Col>{renderTags(todoItem.tags)}</Col>
           </Row>
         </Col>
-        <Space />
         <Col flex="50px">
-          <Popover title="Add Tags">
-            <TagsGenerator todoItem={todoItem} />
-          </Popover>
+          <TagsGenerator todoItem={todoItem} />
         </Col>
         <Col flex="50px">
-          <Button type="text" onClick={handleClick}>
-            <CloseOutlined className="todo-item-close-button" />
-          </Button>
+          <Tooltip title="Remove">
+            <Button type="text" onClick={handleClick}>
+              <DeleteOutlined className="todo-item-delete-button" />
+            </Button>
+          </Tooltip>
         </Col>
       </Row>
     </>

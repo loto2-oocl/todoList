@@ -10,8 +10,8 @@ class TodoList extends Component {
     return (
       <div className="todolist-card-wrapper">
         <Card title="Todo List" bordered={false}>
-          <TodoGroup />
           <TodoGeneratorContainer />
+          <TodoGroup />
         </Card>
       </div>
     );

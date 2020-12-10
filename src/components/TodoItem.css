@@ -10,6 +10,14 @@
   text-decoration: line-through;
 }
 
-.todo-item-close-button {
+.todo-item-icon {
+  font-size: 18px;
+}
+
+.todo-item-icon-done {
+  color: green;
+}
+
+.todo-item-delete-button {
   color: #ff4d4f;
 }

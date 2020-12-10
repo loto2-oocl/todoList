@@ -1,6 +1,6 @@
 import './TagsGenerator.css';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Select } from 'antd';
+import { Button, Select, Tooltip } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import React, { useState } from 'react';
 import { updateTodoTags } from '../apis/todos';
@@ -53,9 +53,11 @@ const TagsGenerator = ({ todoItem }) => {
 
   return (
     <>
-      <Button onClick={showModal} type="text">
-        <PlusOutlined />
-      </Button>
+      <Tooltip title="Add Tags">
+        <Button onClick={showModal} type="text">
+          <PlusOutlined />
+        </Button>
+      </Tooltip>
       <Modal
         title="Edit Tags"
         visible={visible}
