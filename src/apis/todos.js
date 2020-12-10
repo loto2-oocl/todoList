@@ -23,11 +23,8 @@ const toggleTodoStatus = (todoItem) => {
   });
 };
 
-const updateTodoTags = (todoItem, updatedTags) => {
-  return api.put(`/todos/${todoItem.id}`, {
-    ...todoItem,
-    tags: updatedTags,
-  });
+const updateTodoTags = (todoItem, tagIds) => {
+  return api.put(`/todos/${todoItem.id}/tags`, tagIds);
 };
 export {
   getTodoList,

@@ -35,7 +35,13 @@ const TagsGenerator = ({ todoItem }) => {
     setConfirmLoading(true);
     updateTodoTags(todoItem, tagIds)
       .then((response) => {
-        dispatch(updateTodoItem(response.data));
+        console.log(response.data);
+        dispatch(
+          updateTodoItem({
+            ...todoItem,
+            tags: response.data,
+          })
+        );
       })
       .finally(() => {
         setConfirmLoading(false);
