@@ -24,13 +24,7 @@ const TagList = () => {
   useEffect(() => fetchAllTags(), []);
 
   const renderTagContent = (content) => {
-    return (
-      <Typography.Paragraph
-        ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}
-      >
-        {content}
-      </Typography.Paragraph>
-    );
+    return <Typography.Text>{content}</Typography.Text>;
   };
 
   const renderColorBlock = (color) => {

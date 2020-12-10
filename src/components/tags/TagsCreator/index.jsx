@@ -65,9 +65,12 @@ const TagsCreator = () => {
           <Form.Item
             label="Content"
             name="content"
-            rules={[{ required: true, message: 'Tag content cannot be empty' }]}
+            rules={[
+              { required: true, message: 'Tag content cannot be empty' },
+              { max: 20, type: 'string', message: 'Maximum 20 characters' },
+            ]}
           >
-            <Input type="text" />
+            <Input type="text" maxLength={20} />
           </Form.Item>
           <Form.Item
             label="Color"
