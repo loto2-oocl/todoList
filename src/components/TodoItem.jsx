@@ -37,7 +37,7 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   return (
     <>
       <Row className="todo-item-row" align="middle">
-        <Col span={20}>
+        <Col span={22}>
           <Row gutter={[0, 10]}>
             <Col span={24}>
               <span className={messageClassName} onClick={handleStatusChange}>
@@ -48,10 +48,10 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
           </Row>
         </Col>
         <Space />
-        <Col span={2}>
+        <Col flex={1}>
           <TagsGeneratorContainer todoItem={todoItem} />
         </Col>
-        <Col span={2}>
+        <Col span={1}>
           <Button type="text" onClick={handleClick}>
             <CloseOutlined className="todo-item-close-button" />
           </Button>
