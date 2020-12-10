@@ -18,7 +18,7 @@ const todoItemList = (state = [], action) => {
     case UPDATE_TODO_ITEM:
       return state.map((todoItem) => {
         if (todoItem.id === action.payload.id) {
-          return action.payload;
+          return { ...action.payload };
         }
 
         return todoItem;
