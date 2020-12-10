@@ -48,7 +48,7 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
           </Row>
         </Col>
         <Space />
-        <Col flex={1}>
+        <Col span={1}>
           <TagsGeneratorContainer todoItem={todoItem} />
         </Col>
         <Col span={1}>

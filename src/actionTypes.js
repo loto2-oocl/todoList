@@ -5,6 +5,7 @@ const TOGGLE_CHANGE_STATUS = 'TOGGLE_CHANGE_STATUS';
 const INIT_TODOS = 'INIT_TODOS';
 
 const INIT_TAGS = 'INIT_TAGS';
+const ADD_TAG = 'ADD_TAG';
 
 export {
   ADD_TODO_ITEM,
@@ -13,4 +14,5 @@ export {
   TOGGLE_CHANGE_STATUS,
   INIT_TODOS,
   INIT_TAGS,
+  ADD_TAG,
 };

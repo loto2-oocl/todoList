@@ -3,11 +3,14 @@ import { Button, Form, Modal, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import ColorPicker from '../ColorPicker';
 import { createNewTag } from '../../../apis/tags';
+import { useDispatch } from 'react-redux';
+import { addTag } from '../../../actions';
 
 const TagsCreator = () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const formItemLayout = {
     labelCol: { span: 6 },
@@ -34,8 +37,11 @@ const TagsCreator = () => {
   const handleSubmit = (formValues) => {
     setConfirmLoading(true);
     createNewTag(formValues)
-      .then((response) => {})
+      .then((response) => {
+        dispatch(addTag(response.data));
+      })
       .finally(() => {
+        form.resetFields();
         setConfirmLoading(false);
         closeModal();
       });
@@ -43,7 +49,7 @@ const TagsCreator = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button block type="primary" onClick={showModal}>
         <PlusOutlined /> Create Tag
       </Button>
       <Modal

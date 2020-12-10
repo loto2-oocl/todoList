@@ -5,6 +5,8 @@ import {
   REMOVE_TODO_ITEM,
   INIT_TODOS,
   TOGGLE_CHANGE_STATUS,
+  INIT_TAGS,
+  ADD_TAG,
 } from './actionTypes';
 
 const todoItemList = (state = [], action) => {
@@ -39,6 +41,19 @@ const todoItemList = (state = [], action) => {
   }
 };
 
+const tags = (state = [], action) => {
+  if (action.type === INIT_TAGS) {
+    return action.payload;
+  }
+
+  if (action.type === ADD_TAG) {
+    return state.concat(action.payload);
+  }
+
+  return state;
+};
+
 export default combineReducers({
   todoItemList,
+  tags,
 });

@@ -1,0 +1,16 @@
+.tag-item-row {
+  width: 100%;
+}
+
+.tag-item-edit-btn {
+  color: #bfbfbf;
+}
+
+.tag-item-delete-btn {
+  color: #a8071a;
+}
+
+.tag-item-content {
+  height: 100%;
+  border-radius: 5px;
+}

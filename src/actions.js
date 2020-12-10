@@ -5,6 +5,7 @@ import {
   INIT_TODOS,
   TOGGLE_CHANGE_STATUS,
   INIT_TAGS,
+  ADD_TAG,
 } from './actionTypes';
 
 const addTodoItem = (todoItem) => ({
@@ -37,6 +38,11 @@ const initTags = (tags) => ({
   payload: tags,
 });
 
+const addTag = (tag) => ({
+  type: ADD_TAG,
+  payload: tag,
+});
+
 export {
   addTodoItem,
   updateTodoItem,
@@ -44,4 +50,5 @@ export {
   toggleChangeStatus,
   initTodos,
   initTags,
+  addTag,
 };
