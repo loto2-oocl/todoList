@@ -17,7 +17,7 @@ const TagItemActions = ({ tag }) => {
   };
 
   return (
-    <Row>
+    <Row gutter={5}>
       <Col flex="50px">
         <Tooltip placement="topLeft" title="Edit">
           <Button type="text">

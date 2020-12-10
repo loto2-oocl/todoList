@@ -1,12 +1,11 @@
 import './TodoItem.css';
 import React from 'react';
 import { DONE } from '../constants/TodoItemStatus';
-import { Button, Col, Row, Space } from 'antd';
+import { Button, Col, Popover, Row, Space, Tag } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
-import TagsGeneratorContainer from '../containers/TagsGeneratorContainer';
 import classNames from 'classnames';
-import ColoredTag from './ColoredTag';
+import TagsGenerator from './TagsGenerator';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -26,7 +25,11 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   };
 
   const renderTags = (tags) => {
-    return tags.map((tag) => <ColoredTag key={tag} tag={tag} />);
+    return tags.map((tag) => (
+      <Tag key={tag.id} color={tag.color}>
+        {tag.content}
+      </Tag>
+    ));
   };
 
   const messageClassName = classNames({
@@ -36,8 +39,14 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
 
   return (
     <>
-      <Row className="todo-item-row" align="middle">
-        <Col span={22}>
+      <Row
+        className="todo-item-row"
+        align="middle"
+        justify="end"
+        wrap={false}
+        gutter={5}
+      >
+        <Col flex="auto">
           <Row gutter={[0, 10]}>
             <Col span={24}>
               <span className={messageClassName} onClick={handleStatusChange}>
@@ -48,10 +57,12 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
           </Row>
         </Col>
         <Space />
-        <Col span={1}>
-          <TagsGeneratorContainer todoItem={todoItem} />
+        <Col flex="50px">
+          <Popover title="Add Tags">
+            <TagsGenerator todoItem={todoItem} />
+          </Popover>
         </Col>
-        <Col span={1}>
+        <Col flex="50px">
           <Button type="text" onClick={handleClick}>
             <CloseOutlined className="todo-item-close-button" />
           </Button>

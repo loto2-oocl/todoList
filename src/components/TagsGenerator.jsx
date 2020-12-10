@@ -1,14 +1,29 @@
 import './TagsGenerator.css';
-import { EditOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { Button, Select } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { updateTodoTags } from '../apis/todos';
+import { useDispatch, useSelector } from 'react-redux';
+import { initTags, updateTodoItem } from '../actions';
+import { getAllTags } from '../apis/tags';
+import _ from 'lodash';
 
-const TagsGenerator = ({ todoItem, updateTodoItem }) => {
+const { Option } = Select;
+
+const TagsGenerator = ({ todoItem }) => {
+  const initialTagIds = _.map(todoItem.tags, 'id');
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [tags, setTags] = useState([...todoItem.tags]);
+  const [tagIds, setTagIds] = useState(initialTagIds);
+  const tagsList = useSelector((state) => state.tags);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getAllTags().then((response) => {
+      dispatch(initTags(response.data));
+    });
+  }, []);
 
   const showModal = () => {
     setVisible(true);
@@ -16,18 +31,18 @@ const TagsGenerator = ({ todoItem, updateTodoItem }) => {
 
   const handleCancel = () => {
     setVisible(false);
-    setTags([...todoItem.tags]);
+    setTagIds(initialTagIds);
   };
 
   const handleChange = (value) => {
-    setTags(value);
+    setTagIds(value);
   };
 
   const handleEditTags = () => {
     setConfirmLoading(true);
-    updateTodoTags(todoItem, tags)
+    updateTodoTags(todoItem, tagIds)
       .then((response) => {
-        updateTodoItem(response.data);
+        dispatch(updateTodoItem(response.data));
       })
       .finally(() => {
         setConfirmLoading(false);
@@ -35,10 +50,18 @@ const TagsGenerator = ({ todoItem, updateTodoItem }) => {
       });
   };
 
+  const renderTagOptions = () => {
+    return tagsList.map((tag) => (
+      <Option key={tag.id} value={tag.id}>
+        {tag.content}
+      </Option>
+    ));
+  };
+
   return (
     <>
       <Button onClick={showModal} type="text">
-        <EditOutlined />
+        <PlusOutlined />
       </Button>
       <Modal
         title="Edit Tags"
@@ -50,12 +73,14 @@ const TagsGenerator = ({ todoItem, updateTodoItem }) => {
         okText="Edit"
       >
         <Select
-          mode="tags"
+          mode="multiple"
           className="todo-item-tags-input"
-          value={tags}
+          value={tagIds}
           onChange={handleChange}
-          defaultValue={tags}
-        ></Select>
+          defaultValue={initialTagIds}
+        >
+          {renderTagOptions()}
+        </Select>
       </Modal>
     </>
   );
