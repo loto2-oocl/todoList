@@ -4,6 +4,7 @@ import {
   REMOVE_TODO_ITEM,
   INIT_TODOS,
   TOGGLE_CHANGE_STATUS,
+  INIT_TAGS,
 } from './actionTypes';
 
 const addTodoItem = (todoItem) => ({
@@ -31,10 +32,16 @@ const initTodos = (todos) => ({
   payload: todos,
 });
 
+const initTags = (tags) => ({
+  type: INIT_TAGS,
+  payload: tags,
+});
+
 export {
   addTodoItem,
   updateTodoItem,
   removeTodoItem,
   toggleChangeStatus,
   initTodos,
+  initTags,
 };
