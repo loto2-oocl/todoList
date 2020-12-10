@@ -16,6 +16,7 @@ const TagsGenerator = ({ todoItem, updateTodoItem }) => {
 
   const handleCancel = () => {
     setVisible(false);
+    setTags([...todoItem.tags]);
   };
 
   const handleChange = (value) => {
@@ -51,6 +52,7 @@ const TagsGenerator = ({ todoItem, updateTodoItem }) => {
         <Select
           mode="tags"
           className="todo-item-tags-input"
+          value={tags}
           onChange={handleChange}
           defaultValue={tags}
         ></Select>
