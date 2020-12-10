@@ -8,6 +8,7 @@ import {
   INIT_TAGS,
   ADD_TAG,
   REMOVE_TAG,
+  UPDATE_TAG,
 } from './actionTypes';
 
 const todoItemList = (state = [], action) => {
@@ -48,6 +49,14 @@ const tags = (state = [], action) => {
       return action.payload;
     case ADD_TAG:
       return state.concat(action.payload);
+    case UPDATE_TAG:
+      return state.map((tag) => {
+        if (tag.id === action.payload.id) {
+          return action.payload;
+        }
+
+        return tag;
+      });
     case REMOVE_TAG:
       return state.filter((tag) => tag.id !== action.payload);
     default:

@@ -3,8 +3,8 @@ import { Button, Col, Popover, Row, Tag } from 'antd';
 import { BlockPicker } from 'react-color';
 import _ from 'lodash';
 
-const ColorPicker = ({ form }) => {
-  const [color, setColor] = useState('');
+const ColorPicker = ({ form, defaultColor }) => {
+  const [color, setColor] = useState(defaultColor || '');
 
   const handleChangeComplete = (inputColorObj) => {
     const { hex: inputColor } = inputColorObj;

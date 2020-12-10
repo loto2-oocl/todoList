@@ -7,6 +7,7 @@ import {
   INIT_TAGS,
   ADD_TAG,
   REMOVE_TAG,
+  UPDATE_TAG,
 } from './actionTypes';
 
 const addTodoItem = (todoItem) => ({
@@ -44,6 +45,11 @@ const addTag = (tag) => ({
   payload: tag,
 });
 
+const updateTag = (tag) => ({
+  type: UPDATE_TAG,
+  payload: tag,
+});
+
 const removeTag = (tagId) => ({
   type: REMOVE_TAG,
   payload: tagId,
@@ -57,5 +63,6 @@ export {
   initTodos,
   initTags,
   addTag,
+  updateTag,
   removeTag,
 };

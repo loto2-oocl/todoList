@@ -6,6 +6,7 @@ const INIT_TODOS = 'INIT_TODOS';
 
 const INIT_TAGS = 'INIT_TAGS';
 const ADD_TAG = 'ADD_TAG';
+const UPDATE_TAG = 'UPDATE_TAG';
 const REMOVE_TAG = 'REMOVE_TAG';
 
 export {
@@ -16,5 +17,6 @@ export {
   INIT_TODOS,
   INIT_TAGS,
   ADD_TAG,
+  UPDATE_TAG,
   REMOVE_TAG,
 };
