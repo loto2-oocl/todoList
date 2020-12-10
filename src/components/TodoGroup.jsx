@@ -26,6 +26,7 @@ const TodoGroup = () => {
       <List
         size="small"
         dataSource={todoItemList}
+        pagination={{ pageSize: 5 }}
         renderItem={(todoItem) => (
           <List.Item key={todoItem.id}>
             <TodoItemContainer todoItem={todoItem} />
