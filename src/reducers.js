@@ -7,6 +7,7 @@ import {
   TOGGLE_CHANGE_STATUS,
   INIT_TAGS,
   ADD_TAG,
+  REMOVE_TAG,
 } from './actionTypes';
 
 const todoItemList = (state = [], action) => {
@@ -48,6 +49,10 @@ const tags = (state = [], action) => {
 
   if (action.type === ADD_TAG) {
     return state.concat(action.payload);
+  }
+
+  if (action.type === REMOVE_TAG) {
+    return state.filter((tag) => tag.id !== action.payload);
   }
 
   return state;

@@ -8,4 +8,8 @@ const createNewTag = (tag) => {
   return api.post('/tags', tag);
 };
 
-export { getAllTags, createNewTag };
+const deleteTagById = (tagId) => {
+  return api.delete(`/tags/${tagId}`);
+};
+
+export { getAllTags, createNewTag, deleteTagById };
