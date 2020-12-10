@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Form, Modal, Input } from 'antd';
+import { Button, Form, Modal, Input, Alert } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import ColorPicker from '../ColorPicker';
 import { createNewTag } from '../../../apis/tags';
@@ -8,6 +8,8 @@ import { addTag } from '../../../actions';
 
 const TagsCreator = () => {
   const [form] = Form.useForm();
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorDescription, setErrorDescription] = useState('');
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ const TagsCreator = () => {
 
   const handleCancel = () => {
     closeModal();
+    resetErrorBox();
     form.resetFields();
   };
 
@@ -34,16 +37,31 @@ const TagsCreator = () => {
     form.submit();
   };
 
+  const showErrorBox = (message) => {
+    setShowErrorMessage(true);
+    setErrorDescription(message);
+  };
+
+  const resetErrorBox = () => {
+    setShowErrorMessage(false);
+    setErrorDescription('');
+  };
+
   const handleSubmit = (formValues) => {
     setConfirmLoading(true);
+    resetErrorBox();
     createNewTag(formValues)
       .then((response) => {
         dispatch(addTag(response.data));
+        form.resetFields();
+        closeModal();
+      })
+      .catch((error) => {
+        const { message } = error.response.data;
+        showErrorBox(message);
       })
       .finally(() => {
-        form.resetFields();
         setConfirmLoading(false);
-        closeModal();
       });
   };
 
@@ -80,6 +98,15 @@ const TagsCreator = () => {
             <ColorPicker form={form} />
           </Form.Item>
         </Form>
+
+        {showErrorMessage && (
+          <Alert
+            message="Error creating tag"
+            type="error"
+            description={errorDescription}
+            closable
+          />
+        )}
       </Modal>
     </>
   );

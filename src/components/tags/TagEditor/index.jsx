@@ -1,5 +1,5 @@
 import { EditOutlined } from '@ant-design/icons';
-import { Button, Tooltip, Form, Input } from 'antd';
+import { Button, Tooltip, Form, Input, Alert } from 'antd';
 import Modal from 'antd/lib/modal/Modal';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,8 @@ const TagEditor = ({ tag }) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorDescription, setErrorDescription] = useState('');
   const dispatch = useDispatch();
 
   const formItemLayout = {
@@ -28,6 +30,7 @@ const TagEditor = ({ tag }) => {
 
   const handleCancel = () => {
     closeModal();
+    resetErrorBox();
     form.resetFields();
   };
 
@@ -35,15 +38,31 @@ const TagEditor = ({ tag }) => {
     form.submit();
   };
 
+  const showErrorBox = (message) => {
+    setShowErrorMessage(true);
+    setErrorDescription(message);
+  };
+
+  const resetErrorBox = () => {
+    setShowErrorMessage(false);
+    setErrorDescription('');
+  };
+
   const handleUpdateTag = (formValues) => {
     setConfirmLoading(true);
+    resetErrorBox();
     updateTagById(tag.id, formValues)
       .then((response) => {
         dispatch(updateTag(response.data));
+        form.resetFields();
+        closeModal();
+      })
+      .catch((error) => {
+        const { message } = error.response.data;
+        showErrorBox(message);
       })
       .finally(() => {
         setConfirmLoading(false);
-        closeModal();
       });
   };
 
@@ -87,6 +106,15 @@ const TagEditor = ({ tag }) => {
             <ColorPicker defaultColor={tag.color} form={form} />
           </Form.Item>
         </Form>
+
+        {showErrorMessage && (
+          <Alert
+            message="Error updating tag"
+            type="error"
+            description={errorDescription}
+            closable
+          />
+        )}
       </Modal>
     </>
   );
