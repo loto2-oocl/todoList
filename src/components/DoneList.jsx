@@ -1,6 +1,7 @@
 import './DoneList.css';
 import { Card, Col, List, Row, Tag } from 'antd';
 import React, { Component } from 'react';
+import TodoMessage from './TodoMessage';
 
 export default class DoneList extends Component {
   render() {
@@ -14,22 +15,28 @@ export default class DoneList extends Component {
       ));
     };
 
+    const renderListItem = (doneItem) => (
+      <List.Item key={doneItem.id}>
+        <Row className="done-item-row" wrap={false}>
+          <Col flex="auto">
+            <Row>
+              <Col span={24}>
+                <TodoMessage>{doneItem.message}</TodoMessage>
+              </Col>
+              <Col>{renderTags(doneItem.tags)}</Col>
+            </Row>
+          </Col>
+        </Row>
+      </List.Item>
+    );
+
     return (
       <div className="donelist-card-wrapper">
         <Card title="Done List" bordered={false}>
           <List
             size="small"
             dataSource={doneList}
-            renderItem={(doneItem) => (
-              <List.Item key={doneItem.id}>
-                <Row gutter={[0, 10]}>
-                  <Col span={24}>
-                    <span>{doneItem.message}</span>
-                  </Col>
-                  <Col>{renderTags(doneItem.tags)}</Col>
-                </Row>
-              </List.Item>
-            )}
+            renderItem={renderListItem}
           />
         </Card>
       </div>

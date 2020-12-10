@@ -1,3 +1,7 @@
 .donelist-card-wrapper {
   padding: 30px 10vw 30px 10vw;
 }
+
+.done-item-row {
+  width: 100%;
+}

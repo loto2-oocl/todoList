@@ -2,10 +2,6 @@
   width: 100%;
 }
 
-.todo-item-text {
-  cursor: pointer;
-}
-
 .todo-item-done {
   text-decoration: line-through;
 }

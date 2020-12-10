@@ -4,3 +4,7 @@
   height: 100%;
   background: #ececec;
 }
+
+.ant-typography {
+  margin-bottom: 0 !important;
+}

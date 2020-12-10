@@ -5,6 +5,7 @@ import { CheckCircleOutlined, DeleteOutlined } from '@ant-design/icons';
 import { deleteTodoItem, toggleTodoStatus } from '../apis/todos';
 import TagsGenerator from './TagsGenerator';
 import classNames from 'classnames';
+import TodoMessage from './TodoMessage';
 
 const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
   const { message, status } = todoItem;
@@ -55,9 +56,7 @@ const TodoItem = ({ todoItem, removeTodoItem, toggleChangeStatus }) => {
         <Col flex="auto">
           <Row gutter={[0, 10]}>
             <Col span={24}>
-              <div onClick={handleStatusChange}>
-                <span>{message}</span>
-              </div>
+              <TodoMessage>{message}</TodoMessage>
             </Col>
             <Col>{renderTags(todoItem.tags)}</Col>
           </Row>
