@@ -7,6 +7,8 @@ const getTodoList = () => {
 const createNewTodo = (message) => {
   return api.post('/todos', {
     message,
+    status: false,
+    tags: [],
   });
 };
 
