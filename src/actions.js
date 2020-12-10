@@ -6,6 +6,7 @@ import {
   TOGGLE_CHANGE_STATUS,
   INIT_TAGS,
   ADD_TAG,
+  REMOVE_TAG,
 } from './actionTypes';
 
 const addTodoItem = (todoItem) => ({
@@ -43,6 +44,11 @@ const addTag = (tag) => ({
   payload: tag,
 });
 
+const removeTag = (tagId) => ({
+  type: REMOVE_TAG,
+  payload: tagId,
+});
+
 export {
   addTodoItem,
   updateTodoItem,
@@ -51,4 +57,5 @@ export {
   initTodos,
   initTags,
   addTag,
+  removeTag,
 };
